@@ -18,6 +18,5 @@ process index {
 
     samtools faidx $params.outdir/index/genome.fa
     echo bwa_index > done.txt
-
     """
 }

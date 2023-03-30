@@ -1,8 +1,9 @@
 nextflow.enable.dsl=2
 
 //modules
-//include { index } from './modules/index'
-include {bam_bwa} from './modules/bam_bwa'
+include { index } from './modules/index'
+include { bam_filt_align } from './modules/picard_sort'
+
 
 // def variables
 
@@ -15,7 +16,7 @@ if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { 
 bam = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:'\t' )
                             .map( { row -> [idSample = row[0], bam_file = row[1]] } )
-//fasta = Channel.fromPath(params.fasta)
+fasta = Channel.fromPath(params.fasta)
 
 /*
  * Create a workflow
@@ -23,6 +24,6 @@ bam = Channel.fromPath(input_ch)
 
 workflow {
     //bwa
-    //index(fasta)
-    bam_bwa(bam)
+    index(fasta)
+    bam_filt_align(bam,index.out.fasta_index.collect())
 }
