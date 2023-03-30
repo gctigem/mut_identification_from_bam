@@ -24,7 +24,7 @@ process bam_filt_align {
 
     java -jar /picard.jar FilterSamReads I=${idSample}.bam O=${idSample}_filtered.bam TAG=GE TAG_VALUE=ENSG00000073282 FILTER=includeTagValues
     
-    bwa mem -n 0 $params.outdir/index/genome.fa ${idSample}_filtered.bam > ${idSample}_out.sam
+    bwa mem $params.outdir/index/genome.fa ${idSample}_filtered.bam > ${idSample}_out.sam
 
     samtools view ${idSample}_out.sam > ${idSample}_out.bam
     
