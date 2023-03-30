@@ -11,7 +11,6 @@ process bam_bwa {
 
     input:
     tuple val(idSample), path(bam_file)
-    path(fasta_index)
     
     output:
     path("*filtered.bam")
@@ -25,5 +24,5 @@ process bam_bwa {
     """
 }
 
-
+    //path(fasta_index)
     //bwa mem -n 0 $params.outdir/index/genome.fa ${idSample}.bam > ${idSample}_out.sam
