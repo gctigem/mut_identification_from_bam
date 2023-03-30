@@ -2,7 +2,7 @@ nextflow.enable.dsl=2
 
 //modules
 include { index } from './modules/index'
-include { bam_filt_align } from './modules/picard_sort'
+include { bam_filt_align } from './modules/bam_filt_align'
 
 
 // def variables
