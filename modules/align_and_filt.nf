@@ -12,6 +12,7 @@ process align_and_filt {
 
     input:
     tuple val(idSample), path(fastqs)
+    path(fasta_index)
 
     output:
     path("*.sam")

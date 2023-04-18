@@ -12,7 +12,6 @@ process bam_filt_to_fastq {
 
     input:
     tuple val(idSample), path(bam_file)
-    path(fasta_index)
 
     output:
     tuple val(idSample), path("*.fastq"), emit: fastqs 

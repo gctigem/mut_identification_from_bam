@@ -26,6 +26,6 @@ fasta = Channel.fromPath(params.fasta)
 workflow {
     //bwa
     index(fasta)
-    bam_filt_to_fastq(bam,index.out.fasta_index.collect())
-    align_and_filt(bam_filt_to_fastq.out.fastqs)
+    bam_filt_to_fastq(bam)
+    align_and_filt(bam_filt_to_fastq.out.fastqs,index.out.fasta_index.collect())
 }
