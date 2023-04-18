@@ -23,7 +23,7 @@ process align_and_filt {
    
     bwa mem $params.outdir/index/genome.fa ${idSample}_r1.fastq ${idSample}_r2.fastq > ${idSample}_out.sam
 
-    samtools view ${idSample}_out.sam | awk '$2 == 16' | awk '$12 == "NM:i:0"' | grep XA > ${idSample}_perf_align_reads.sam
+    samtools view ${idSample}_out.sam | awk '\$2 == 16' | awk '\$12 == "NM:i:0"' | grep XA > ${idSample}_perf_align_reads.sam
 
     wc -l ${idSample}_perf_align_reads.sam > mut_stats.txt
     cut -f3 ${idSample}_perf_align_reads.sam | sort | uniq -c >> mut_stats.txt
