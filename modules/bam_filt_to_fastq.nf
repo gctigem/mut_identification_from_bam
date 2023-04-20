@@ -27,7 +27,7 @@ process bam_filt_to_fastq {
 
     samtools view ${idSample}_filtered.bam | cut -f1,17 | sed 's/BC:Z://g' > association_read_bc.txt 
 
-    java -jar Picard/SamToFastq.jar I=${idSample}_filtered.bam F=${idSample}_r1.fastq F2=${idSample}_r2.fastq
+    java -jar /picard.jar SamToFastq I=${idSample}_filtered.bam F=${idSample}_r1.fastq F2=${idSample}_r2.fastq
     
     """
 }
