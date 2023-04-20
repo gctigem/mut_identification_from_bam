@@ -7,6 +7,7 @@ process bam_filt_to_fastq {
     saveAs: {filename ->
 	     if (filename.indexOf(".fastq") > 0) 	"picard/$filename"
 	     else if (filename.indexOf(".txt") > 0) 	"stats/$filename"
+	     else if (filename.indexOf(".bam") > 0) 	"bam/$filename"
 	else null
     }
 
