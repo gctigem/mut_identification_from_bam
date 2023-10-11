@@ -19,7 +19,7 @@ process bam_subset {
 
     script:
     """
-    java -jar /picard.jar FilterSamReads I=${bam} O=${idSample}_filtered.bam TAG=BC TAG_VALUE=${idSample} FILTER=includeTagValues
+    java -jar /picard.jar FilterSamReads I=${bam} O=${idSample}_filtered.bam TAG=BX TAG_VALUE=${idSample} FILTER=includeTagValues
         
     """
 }
