@@ -1,0 +1,14 @@
+input:
+  /path/to/the/samplesheet.csv
+
+outdir:
+  /path/to/the/output_directory/
+
+fasta:
+  /path/to/the/fasta_file.fa
+
+bam:
+  /path/to/the/bam_file.bam
+
+orf:
+  1-2208

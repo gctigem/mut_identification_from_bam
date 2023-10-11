@@ -1,9 +1,10 @@
 nextflow.enable.dsl=2
 
 //modules
-include { index } from './modules/index'
-include { bam_filt_to_fastq } from './modules/bam_filt_to_fastq'
-include { align_and_filt } from './modules/align_and_filt'
+include { deduplication } from './modules/deduplication'
+include { bam_subset } from './modules/bam_subset'
+include { gatk_dict } from './modules/gatk_dict'
+include { gatk_count } from './modules/gatk_count'
 
 
 // def variables
@@ -14,9 +15,10 @@ if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { 
  * Create a channel for input bam files and annotation
  */
 
-bam = Channel.fromPath(input_ch)
+bc = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:'\t' )
-                            .map( { row -> [idSample = row[0], bam_file = row[1]] } )
+                            .map( { row -> [idSample = row[0]] } )
+bam = Channel.fromPath(params.bam)
 fasta = Channel.fromPath(params.fasta)
 
 /*
@@ -24,8 +26,8 @@ fasta = Channel.fromPath(params.fasta)
  */
 
 workflow {
-    //bwa
-    index(fasta)
-    bam_filt_to_fastq(bam)
-    align_and_filt(bam_filt_to_fastq.out.fastqs,index.out.fasta_index.collect())
+    bam_subset(bc, bam)
+    deduplication(bam_subset.out.sub_bam)
+    gatk_dict(fasta)
+    gatk_count(deduplication.out.dedup_bam,gatk_dict.out.dict,fasta)
 }
