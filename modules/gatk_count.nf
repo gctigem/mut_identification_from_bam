@@ -14,7 +14,7 @@ process gatk_count {
     }
     
     input:
-    tuple val(idSample), path(dedup_bam)
+    tuple val(idSample), path(sub_bam)
     path(dict)
     path(fasta)
 
@@ -23,7 +23,7 @@ process gatk_count {
 
     script:
     """
-    gatk AnalyzeSaturationMutagenesis -I ${dedup_bam} -R ${fasta} --orf $params.orf -O ./${idSample}
+    gatk AnalyzeSaturationMutagenesis -I ${sub_bam} -R ${fasta} --orf $params.orf -O ./${idSample}
     
     """
 }
