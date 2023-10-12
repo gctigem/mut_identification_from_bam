@@ -24,8 +24,6 @@ bc.view()
 bam = Channel.fromPath(params.bam)
 fasta = Channel.fromPath(params.fasta)
 
-test=bc.join(bam)
-test.view()
 
 /*
  * Create a workflow
