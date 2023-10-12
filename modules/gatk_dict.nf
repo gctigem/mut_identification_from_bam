@@ -7,8 +7,6 @@ process gatk_dict {
     path(fasta)
     path(fasta_index)
 
-    output:
-    path("*.txt"), emit: dict_index
 
     script:
     """
