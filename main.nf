@@ -33,5 +33,5 @@ workflow {
     //deduplication(bam_subset.out.sub_bam)
     index(fasta)
     gatk_dict(index.out.fasta_index,fasta)
-    //gatk_count(bam_subset.out.sub_bam,gatk_dict.out.dict,fasta)
+    gatk_count(bam_subset.out.sub_bam,gatk_dict.out.dict,fasta)
 }
