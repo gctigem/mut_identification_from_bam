@@ -7,6 +7,9 @@ process gatk_dict {
     path(fasta)
     path(fasta_index)
 
+    output:
+    path("*.txt"), emit: dict_index
+
     script:
     """
     [ ! -f $params.outdir/index/genome.dict ] && gatk CreateSequenceDictionary -R $params.outdir/index/genome.fa

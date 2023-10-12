@@ -15,6 +15,7 @@ process gatk_count {
     
     input:
     tuple val(idSample), path(sub_bam)
+    path(dict_index)
     
     output:
     path("*{Counts,Fractions,Coverage}")
