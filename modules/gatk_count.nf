@@ -15,15 +15,13 @@ process gatk_count {
     
     input:
     tuple val(idSample), path(sub_bam)
-    path(dict)
-    path(fasta)
-
+    
     output:
     path("*{Counts,Fractions,Coverage}")
 
     script:
     """
-    gatk AnalyzeSaturationMutagenesis -I ${sub_bam} -R ${fasta} --orf $params.orf -O ./${idSample}
+    gatk AnalyzeSaturationMutagenesis -I ${sub_bam} -R $params.outdir/index/genome.fa --orf $params.orf -O ./${idSample}
     
     """
 }
