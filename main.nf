@@ -18,10 +18,12 @@ if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { 
 bc = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:'\t' )
                             .map( { row -> [idSample = row[0]] } )
-bc.collect()
-    .view()
+
 bam = Channel.fromPath(params.bam)
 fasta = Channel.fromPath(params.fasta)
+
+test=bc.join(bam)
+test.view()
 
 /*
  * Create a workflow
