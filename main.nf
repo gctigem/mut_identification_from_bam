@@ -30,6 +30,6 @@ fasta = Channel.fromPath(params.fasta)
 workflow {
     bam_subset(bc, bam.collect())
     //deduplication(bam_subset.out.sub_bam)
-    //gatk_dict(fasta)
+    gatk_dict(fasta)
     //gatk_count(bam_subset.out.sub_bam,gatk_dict.out.dict,fasta)
 }
