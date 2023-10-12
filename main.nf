@@ -17,9 +17,7 @@ if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { 
 
 bc = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:'\t' )
-                            .map( { row -> [idSample = row[0], bam = row[1]] } )
-
-bc.view()
+                            .map( { row -> [idSample = row[0]] } )
 
 bam = Channel.fromPath(params.bam)
 fasta = Channel.fromPath(params.fasta)
@@ -30,7 +28,7 @@ fasta = Channel.fromPath(params.fasta)
  */
 
 workflow {
-    bam_subset(bc, bam)
+    bam_subset(bc.collect(), bam)
     //deduplication(bam_subset.out.sub_bam)
     //gatk_dict(fasta)
     //gatk_count(bam_subset.out.sub_bam,gatk_dict.out.dict,fasta)
