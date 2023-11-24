@@ -13,14 +13,13 @@ process index {
     script:
     """
     bwa index $fasta
- 
-
-
-    """
-}
-
-/*   [ ! -d $params.outdir/index ] && mkdir $params.outdir/index
+    
+    [ ! -d $params.outdir/index ] && mkdir $params.outdir/index
     cp * $params.outdir/index/
 
     samtools faidx $params.outdir/index/${fasta}
-    echo bwa_index > done.txt*/
+    echo bwa_index > done.txt
+ 
+    """
+}
+
