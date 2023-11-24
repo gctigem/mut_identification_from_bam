@@ -1,7 +1,6 @@
 nextflow.enable.dsl=2
 
 //modules
-include { deduplication } from './modules/deduplication'
 include { bam_subset } from './modules/bam_subset'
 include { index } from './modules/index'
 include { gatk_dict } from './modules/gatk_dict'
@@ -20,7 +19,8 @@ bc = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:'\t' )
                             .map( { row -> [idSample = row[0]] } )
 
-bam = Channel.fromPath(params.bam)
+fastq_1 = Channel.fromPath(params.fastq_1)
+fastq_2 = Channel.fromPath(params.fastq_1)
 fasta = Channel.fromPath(params.fasta)
 
 
@@ -29,9 +29,9 @@ fasta = Channel.fromPath(params.fasta)
  */
 
 workflow {
-    bam_subset(bc, bam.collect())
-    //deduplication(bam_subset.out.sub_bam)
+    fastq_subset(bc, fastq_1.collect(),fastq_2.collect())
     index(fasta)
     gatk_dict(index.out.fasta_index,fasta)
+
     gatk_count(bam_subset.out.sub_bam)
 }
