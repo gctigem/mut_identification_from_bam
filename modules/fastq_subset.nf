@@ -2,7 +2,6 @@ process fastq_subset {
     echo true
     label 'fastq_subset'
     tag 'fastq_subset'
-    container 'docker://qpegi3s/seqkit'
     //container 'docker://rosadesa/ampliseq:0.3'
     //publishDir "$params.outdir", mode: 'copy',
     //saveAs: {filename ->
