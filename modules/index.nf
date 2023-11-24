@@ -3,6 +3,7 @@ process index {
     label 'index'
     tag 'index'
     container 'docker://rosadesa/ampliseq:0.3'
+   
     input:
     path(fasta)
     
@@ -11,7 +12,7 @@ process index {
 
     script:
     """
-    bwa index ${fasta}
+    bwa index $fasta
     [ ! -d $params.outdir/index ] && mkdir $params.outdir/index
     cp * $params.outdir/index/
 
