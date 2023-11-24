@@ -22,6 +22,7 @@ bc = Channel.fromPath(input_ch)
 
 fastq_1 = Channel.fromPath(params.fastq_1)
 fastq_2 = Channel.fromPath(params.fastq_2)
+
 fasta = Channel.fromPath(params.fasta)
 
 
