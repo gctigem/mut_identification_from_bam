@@ -1,10 +1,11 @@
 nextflow.enable.dsl=2
 
 //modules
-include { bam_subset } from './modules/bam_subset'
+include { fastq_subset } from './modules/fastq_subset'
 include { index } from './modules/index'
 include { gatk_dict } from './modules/gatk_dict'
 include { gatk_count } from './modules/gatk_count'
+include { alignment } from './modules/alignment'
 
 
 // def variables
@@ -32,6 +33,6 @@ workflow {
     fastq_subset(bc, fastq_1.collect(),fastq_2.collect())
     index(fasta)
     gatk_dict(index.out.fasta_index,fasta)
-
-    gatk_count(bam_subset.out.sub_bam)
+    alignment(fastq_subset.out.sub_fastq, index.out.fasta_index.collect())
+    gatk_count(alignment.out.bam)
 }
