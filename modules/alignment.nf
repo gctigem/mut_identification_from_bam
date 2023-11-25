@@ -24,7 +24,7 @@ process alignment {
     """
 
 
-   bwa mem -M $params.outdir/index/TP63.fa ${sub_fastq[0]} ${sub_fastq[1]} | samtools view -bS - > ${idSample}_out.bam
+   bwa mem -M /home/tigem/r.desantis/SAMI/MITE/index/TP63.fa ${sub_fastq[0]} ${sub_fastq[1]} | samtools view -bS - > ${idSample}_out.bam
 
 
     """
