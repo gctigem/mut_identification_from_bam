@@ -25,6 +25,9 @@ process alignment {
     ln -s -f ${sub_fastq[0]} ${idSample}_1.fastq.gz
     ln -s -f ${sub_fastq[1]} ${idSample}_2.fastq.gz
 
+    bwa mem -M $params.outdir/index/TP63.fa ${idSample}_1.fastq.gz ${idSample}_2.fastq.gz | samtools view -bS - > ${idSample}_out.bam
+
+
     """
 }
 /*  ln -s ${sub_fastq[0]} ${idSample}_1.fastq.gz
