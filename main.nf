@@ -19,7 +19,7 @@ if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { 
 bc = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:'\n' )
                             .map( { row -> [idSample = row[0]] } )
-                            .view()
+                   
 
 
 
@@ -34,6 +34,9 @@ fasta = Channel.fromPath(params.fasta)
  */
 
 workflow {
+    input_subset=bc.collect()
+    input_subset.view()
+
      fastq_subset(bc, fastq_1,fastq_2)
     //index(fasta.collect())
     //gatk_dict(index.out.fasta_index,fasta)
