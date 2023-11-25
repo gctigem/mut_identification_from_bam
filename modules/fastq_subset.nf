@@ -16,7 +16,7 @@ process fastq_subset {
 
 
     output:
-    tuple val(idSample), path("*fastq.gz"), emit: sub_fastq
+    tuple val(idSample), file("*fastq.gz"), emit: sub_fastq
 
     script:
     """
