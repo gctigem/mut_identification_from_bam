@@ -20,10 +20,12 @@ bc = Channel.fromPath(input_ch)
                             .splitCsv( header:false, sep:'\t' )
                             .map( { row -> [idSample = row[0]] } )
 
-fastq_1 = Channel.fromPath(params.fastq_1)
-fastq_2 = Channel.fromPath(params.fastq_2)
 
-//fasta = Channel.fromPath(params.fasta)
+fastq=Channel.fromPath(params.fastq)
+//fastq_1 = Channel.fromPath(params.fastq_1)
+//fastq_2 = Channel.fromPath(params.fastq_2)
+
+fasta = Channel.fromPath(params.fasta)
 
 
 /*
@@ -31,9 +33,10 @@ fastq_2 = Channel.fromPath(params.fastq_2)
  */
 
 workflow {
-    fastq_subset(bc, fastq_1.collect(),fastq_2.collect())
+    fastq_subset(fastq)
+    //fastq_subset(bc, fastq_1.collect(),fastq_2.collect())
     //index(fasta.collect())
     //gatk_dict(index.out.fasta_index,fasta)
-    alignment(fastq_subset.out.sub_fastq)
-    gatk_count(alignment.out.bam)
+    //alignment(fastq_subset.out.sub_fastq)
+    //gatk_count(alignment.out.bam)
 }
