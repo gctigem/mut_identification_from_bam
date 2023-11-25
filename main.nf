@@ -24,7 +24,7 @@ bc = Channel.fromPath(input_ch)
 fastq=Channel.from(params.fastq)
              .map({name,reads -> 
                          [name = name, 
-                         reads = reads[0..1]})
+                         reads = reads[0]})
 
 
 //fastq_1 = Channel.fromPath(params.fastq_1)
