@@ -14,7 +14,7 @@ process alignment {
     }
 
     input:
-    tuple val(idSample), path(sub_fastq)
+    tuple val(idSample), file(sub_fastq)
     //path(fasta_index)
     
     output:
