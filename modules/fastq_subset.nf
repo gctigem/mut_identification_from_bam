@@ -10,7 +10,7 @@ process fastq_subset {
     }
 
     input:
-     tuple val(idSample)
+     tuple val(bc)
      path(fastq_1)
      path(fastq_2)
 
@@ -19,12 +19,12 @@ process fastq_subset {
 
     script:
     """
-  for (barcode in idSample.split(',')) {
-        zcat ${fastq_1} | grep -A 3 BX:Z:${barcode} > ${barcode}_filtered_1.fastq
-        gzip ${barcode}_filtered_1.fastq
+       bc.view().each { idSample ->
+        zcat ${fastq_1} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
+        gzip ${idSample}_filtered_1.fastq
 
-        zcat ${fastq_2} | grep -A 3 BX:Z:${barcode} > ${barcode}_filtered_2.fastq
-        gzip ${barcode}_filtered_2.fastq
+        zcat ${fastq_2} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_2.fastq
+        gzip ${idSample}_filtered_2.fastq
     }
     """
 }
