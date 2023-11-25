@@ -3,11 +3,11 @@ process fastq_subset {
     label 'fastq_subset'
     tag 'fastq_subset'
     //container 'docker://rosadesa/ampliseq:0.3'
-    //publishDir "$params.outdir", mode: 'copy',
-    //saveAs: {filename ->
-	//     if (filename.indexOf("sorted.bam") > 0) 	"/$filename"
-	//else null
-    //}
+    publishDir "$params.outdir", mode: 'copy',
+    saveAs: {filename ->
+	     if (filename.indexOf("fastq") > 0) 	"/$filename"
+	else null
+    }
 
     input:
     tuple val(idSample)
