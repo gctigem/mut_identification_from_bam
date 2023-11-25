@@ -19,13 +19,12 @@ process fastq_subset {
 
     script:
     """
-       idSample.each {
         zcat ${fastq_1} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
         gzip ${idSample}_filtered_1.fastq
 
         zcat ${fastq_2} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_2.fastq
         gzip ${idSample}_filtered_2.fastq
-    }
+    
     """
 }
 
