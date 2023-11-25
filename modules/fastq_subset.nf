@@ -5,7 +5,7 @@ process fastq_subset {
     //container 'docker://rosadesa/ampliseq:0.3'
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
-	     if (filename.indexOf("fastq") > 0) 	"/$filename"
+	     if (filename.indexOf("fastq") > 0) 	"subsetted/$filename"
 	else null
     }
 
