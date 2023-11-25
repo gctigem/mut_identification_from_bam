@@ -14,7 +14,7 @@ process alignment {
     }
 
     input:
-    tuple val(idSample), file(sub_fastq)
+    tuple val(idSample), path(sub_fastq)
     //path(fasta_index)
     
     output:
@@ -22,8 +22,8 @@ process alignment {
 
     script:
     """
-    ln -s ${sub_fastq[0]} ${idSample}_1.fastq.gz
-    ln -s ${sub_fastq[1]} ${idSample}_2.fastq.gz
+    ln -s -f ${sub_fastq[0]} ${idSample}_1.fastq.gz
+    ln -s -f ${sub_fastq[1]} ${idSample}_2.fastq.gz
 
     """
 }
