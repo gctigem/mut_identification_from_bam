@@ -2,6 +2,7 @@ process fastq_subset {
     echo true
     label 'fastq_subset'
     tag 'fastq_subset'
+     errorStrategy 'ignore'
     //container 'docker://rosadesa/ampliseq:0.3'
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
