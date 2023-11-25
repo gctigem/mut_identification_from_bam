@@ -34,10 +34,7 @@ fasta = Channel.fromPath(params.fasta)
  */
 
 workflow {
-    input_subset=bc.collect()
-    input_subset.view()
-
-     fastq_subset(bc, fastq_1,fastq_2)
+     fastq_subset(bc, fastq_1.collect(),fastq_2.collect())
     //index(fasta.collect())
     //gatk_dict(index.out.fasta_index,fasta)
      alignment(fastq_subset.out.sub_fastq)
