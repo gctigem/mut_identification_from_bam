@@ -21,14 +21,9 @@ bc = Channel.fromPath(input_ch)
                             .map( { row -> [idSample = row[0]] } )
 
 
-fastq=Channel.from(params.fastq)
-             .map({name,reads -> 
-                         [name = name, 
-                         reads = reads[0..1]]})
 
-
-//fastq_1 = Channel.fromPath(params.fastq_1)
-//fastq_2 = Channel.fromPath(params.fastq_2)
+fastq_1 = Channel.from(params.fastq_1)
+fastq_2 = Channel.from(params.fastq_2)
 
 fasta = Channel.fromPath(params.fasta)
 
@@ -38,8 +33,7 @@ fasta = Channel.fromPath(params.fasta)
  */
 
 workflow {
-    fastq_subset(bc,fastq)
-    //fastq_subset(bc, fastq_1.collect(),fastq_2.collect())
+     fastq_subset(bc, fastq_1,fastq_2)
     //index(fasta.collect())
     //gatk_dict(index.out.fasta_index,fasta)
     //alignment(fastq_subset.out.sub_fastq)
