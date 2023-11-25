@@ -10,7 +10,7 @@ process fastq_subset {
     }
 
     input:
-     tuple val(bc)
+     tuple val(idSample)
      path(fastq_1)
      path(fastq_2)
 
@@ -19,7 +19,7 @@ process fastq_subset {
 
     script:
     """
-       bc.view().each { idSample ->
+       idSample.each { idSample ->
         zcat ${fastq_1} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
         gzip ${idSample}_filtered_1.fastq
 
