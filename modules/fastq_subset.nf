@@ -19,7 +19,7 @@ process fastq_subset {
 
     script:
     """
-       idSample.each { idSample ->
+       idSample.each {
         zcat ${fastq_1} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
         gzip ${idSample}_filtered_1.fastq
 
