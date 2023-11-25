@@ -9,7 +9,7 @@ process alignment {
     //container 'docker://rosadesa/ampliseq:0.2'
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
-	     if (filename.indexOf(".sam") > 0) 	"bwa/$filename"
+	     if (filename.indexOf(".bam") > 0) 	"bwa/$filename"
 	else null
     }
 
@@ -18,15 +18,14 @@ process alignment {
     //path(fasta_index)
     
     output:
-    tuple val(idSample), path("*.sam"), emit: bam
+    tuple val(idSample), path("*.bam"), emit: bam
 
     script:
     """
     ln -s -f ${sub_fastq[0]} ${idSample}_1.fastq.gz
     ln -s -f ${sub_fastq[1]} ${idSample}_2.fastq.gz
 
-   bwa mem -M $params.outdir/index/TP63.fa ${sub_fastq} -o ${idSample}_out.sam
-
+   bwa mem -M $params.outdir/index/TP63.fa ${sub_fastq} | samtools view -bS - > ${idSample}_out.bam
 
     """
 }
