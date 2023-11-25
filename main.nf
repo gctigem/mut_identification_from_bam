@@ -37,5 +37,5 @@ workflow {
     //index(fasta.collect())
     //gatk_dict(index.out.fasta_index,fasta)
      alignment(fastq_subset.out.sub_fastq)
-    //gatk_count(alignment.out.bam)
+     gatk_count(alignment.out.bam)
 }
