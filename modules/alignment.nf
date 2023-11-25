@@ -22,9 +22,10 @@ process alignment {
 
     script:
     """
+    ln -s -f ${sub_fastq[0]} ${idSample}_1.fastq.gz
+    ln -s -f ${sub_fastq[1]} ${idSample}_2.fastq.gz
 
-
-   bwa mem -M $params.outdir/index/TP63.fa ${sub_fastq[0]} ${sub_fastq[1]} -o ${idSample}_out.sam
+   bwa mem -M $params.outdir/index/TP63.fa ${idSample}_*.fastq.gz -o ${idSample}_out.sam
 
 
     """
