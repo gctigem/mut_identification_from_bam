@@ -17,8 +17,8 @@ if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { 
  */
 
 bc = Channel.fromPath(input_ch)
-                            .splitCsv( header:false, sep:'\t' )
-                            .map( { row -> [idSample = row[0..10]] } )
+                            .splitCsv( header:false, sep:'\n' )
+                            .map( { row -> [idSample = row[0]] } )
                             //.view()
 
 
