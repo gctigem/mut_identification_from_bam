@@ -14,8 +14,9 @@ process alignment {
     }
 
     input:
+    path(fasta)
     tuple val(idSample), file(sub_fastq)
-    //path(fasta_index)
+
     
     output:
     tuple val(idSample), path("*.bam"), emit: bam
@@ -25,7 +26,7 @@ process alignment {
     ln -s -f ${sub_fastq[0]} ${idSample}_1.fastq.gz
     ln -s -f ${sub_fastq[1]} ${idSample}_2.fastq.gz
 
-   bwa mem -M $params.outdir/index/TP63.fa ${sub_fastq} | samtools view -bS - > ${idSample}_out.bam
+   bwa mem -M $fasta ${sub_fastq} | samtools view -bS - > ${idSample}_out.bam
 
     """
 }
