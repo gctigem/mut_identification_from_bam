@@ -18,7 +18,7 @@ process gatk_count {
     tuple val(idSample), path(bam)
     
     output:
-    tuple val(idSample),path("${idSample}.{*}"), emit: mutagenesis
+    tuple val(idSample),path("${idSample}.aaCounts"), emit: mutagenesis
 
     //tuple val(idSample),path("*.{variantCounts,Counts,Fractions,Coverage}"), emit: mutagenesis
     
