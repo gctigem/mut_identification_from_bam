@@ -2,7 +2,7 @@ process index {
     echo true
     label 'index'
     tag 'index'
-    container 'docker://rosadesa/ampliseq:0.3'
+    //container 'docker://rosadesa/ampliseq:0.3'
    
     input:
     path(fasta)
