@@ -22,6 +22,7 @@ process gatk_count {
     
     script:
     """
+    mkdir $params.outdir/gatk
     gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O $params.outdir/gatk/${idSample}
     
     """
