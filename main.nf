@@ -25,7 +25,7 @@ bc = Channel.fromPath(input_ch)
 
 fastq_1 = Channel.from(params.fastq_1)
 fastq_2 = Channel.from(params.fastq_2)
-
+fastq_1.view()
 fasta = Channel.fromPath(params.fasta)
 fasta.view()
 
