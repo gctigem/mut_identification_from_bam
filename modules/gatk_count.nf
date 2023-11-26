@@ -17,8 +17,8 @@ process gatk_count {
     path(fasta_index)
     tuple val(idSample), path(bam)
     
-    //output:
-    //path("*{Counts,Fractions,Coverage}")
+    output:
+    tuple val(idSample),path("*.{variantCounts,Counts,Fractions,Coverage}"), emit: 
 
     script:
     """
