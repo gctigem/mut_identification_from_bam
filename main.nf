@@ -27,6 +27,7 @@ fastq_1 = Channel.from(params.fastq_1)
 fastq_2 = Channel.from(params.fastq_2)
 
 fasta = Channel.fromPath(params.fasta)
+fasta.view()
 
 
 /*
