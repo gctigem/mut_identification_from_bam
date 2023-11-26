@@ -14,6 +14,7 @@ process gatk_count {
     }
     
     input:
+    path(fasta_index)
     tuple val(idSample), path(bam)
     
     output:
