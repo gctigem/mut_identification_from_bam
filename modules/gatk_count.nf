@@ -17,14 +17,14 @@ process gatk_count {
     path(fasta_index)
     tuple val(idSample), path(bam)
     
-    output:
-    tuple val(idSample),path("${idSample}.aaCounts"), emit: mutagenesis
+    //output:
+    //tuple val(idSample),path("${idSample}.aaCounts"), emit: mutagenesis
 
     //tuple val(idSample),path("*.{variantCounts,Counts,Fractions,Coverage}"), emit: mutagenesis
     
     script:
     """
-    gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O ${idSample}
+    gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O $params.outdir/${idSample}
     
     """
 }
