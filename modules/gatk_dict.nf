@@ -10,7 +10,7 @@ process gatk_dict {
 
     script:
     """
-    [ ! -f $params.outdir/index/genome.dict ] && gatk CreateSequenceDictionary -R $params.outdir/index/genome.fa
+    [ ! -f $params.outdir/ref/genome.dict ] && gatk CreateSequenceDictionary -R $params.outdir/ref/genome.fa
     echo gatk_dict > done.txt
 
     """
