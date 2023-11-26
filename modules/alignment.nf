@@ -26,7 +26,7 @@ process alignment {
     ln -s -f ${sub_fastq[0]} ${idSample}_1.fastq.gz
     ln -s -f ${sub_fastq[1]} ${idSample}_2.fastq.gz
 
-   bwa mem -M $params.outdir/ref/TP63.fa ${sub_fastq} | samtools view -bS - > ${idSample}_out.bam
+   bwa mem -M $params.outdir/ref/genome.fa ${sub_fastq} | samtools view -bS - > ${idSample}_out.bam
 
     """
 }
