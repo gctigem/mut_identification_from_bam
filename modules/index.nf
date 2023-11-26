@@ -12,14 +12,21 @@ process index {
 
     script:
     """
-    bwa index $fasta
-    
-    [ ! -d $params.outdir/index ] && mkdir $params.outdir/index
-    cp * $params.outdir/index/
+    mv $fasta genome.fa
+    bwa index genome.fa
 
-    samtools faidx $params.outdir/index/${fasta}
+     mkdir -p $params.outdir/ref
+     cp genome.* $params.outdir/ref
+
+    samtools faidx $params.outdir/ref/genome.fa
     echo bwa_index > done.txt
  
     """
 }
 
+
+    /* [ ! -d $params.outdir/index ] && mkdir $params.outdir/index
+    cp * $params.outdir/index/
+
+    samtools faidx $params.outdir/index/${fasta}
+    echo bwa_index > done.txt*/
