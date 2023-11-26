@@ -3,7 +3,7 @@ process gatk_count {
     label 'gatk_count'
     tag 'gatk_count'
     container 'docker://quay.io/biocontainers/gatk4:4.3.0.0--py36hdfd78af_0'
-    errorStrategy 'ignore'
+    //errorStrategy 'ignore'
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
 	     if (filename.indexOf(".variantCounts") > 0) 	"gatk/counts/$filename"
