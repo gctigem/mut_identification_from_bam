@@ -25,8 +25,3 @@ process index {
 }
 
 
-    /* [ ! -d $params.outdir/index ] && mkdir $params.outdir/index
-    cp * $params.outdir/index/
-
-    samtools faidx $params.outdir/index/${fasta}
-    echo bwa_index > done.txt*/
