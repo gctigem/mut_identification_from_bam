@@ -13,18 +13,19 @@ process fastq_subset {
 
     input:
      tuple val(idSample)
-     path(fastq_1)
-     path(fastq_2)
+     path(fastq)
+     //path(fastq_1)
+     //path(fastq_2)
 
     output:
     tuple val(idSample), path("${idSample}_filtered_*.fastq.gz"), emit: sub_fastq
 
     script:
     """
-        zcat ${fastq_1} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
+        zcat ${fastq[0]} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
         gzip ${idSample}_filtered_1.fastq
 
-        zcat ${fastq_2} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_2.fastq
+        zcat ${fastq[1]} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_2.fastq
         gzip ${idSample}_filtered_2.fastq
     
     """
