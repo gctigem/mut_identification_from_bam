@@ -2,11 +2,11 @@ nextflow.enable.dsl=2
 
 //modules
 include { converting } from './modules/converting'
-include { fastq_subset } from './modules/fastq_subset'
+/*include { fastq_subset } from './modules/fastq_subset'
 include { index } from './modules/index'
 include { gatk_dict } from './modules/gatk_dict'
 include { gatk_count } from './modules/gatk_count'
-include { alignment } from './modules/alignment'
+include { alignment } from './modules/alignment'*/
 
 
 // def variables
@@ -38,10 +38,10 @@ fasta = Channel.from(params.fasta)
 
 workflow {
      converting(bam)
-     fastq_subset(bc,converting.out.fastq.collect())
+     /*fastq_subset(bc,converting.out.fastq.collect())
      //fastq_subset(bc, fastq_1.collect(),fastq_2.collect())
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
      alignment(index.out.fasta_index.collect(),fastq_subset.out.sub_fastq)
-     gatk_count(index.out.fasta_index.collect(),alignment.out.bam)
+     gatk_count(index.out.fasta_index.collect(),alignment.out.bam)*/
 }
