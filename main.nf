@@ -22,9 +22,9 @@ bc = Channel.fromPath(input_ch)
                    
 
 
-
-fastq_1 = Channel.from(params.fastq_1)
-fastq_2 = Channel.from(params.fastq_2)
+bam=Channel.from(params.bam)
+//fastq_1 = Channel.from(params.fastq_1)
+//fastq_2 = Channel.from(params.fastq_2)
 
 fasta = Channel.from(params.fasta)
 
