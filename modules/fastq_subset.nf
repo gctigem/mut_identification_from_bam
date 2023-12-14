@@ -14,8 +14,7 @@ process fastq_subset {
     input:
      tuple val(idSample)
      path(fastq)
-     //path(fastq_1)
-     //path(fastq_2)
+
 
     output:
     tuple val(idSample), path("${idSample}_filtered_*.fastq.gz"), emit: sub_fastq
@@ -32,6 +31,4 @@ process fastq_subset {
 }
 
 
-//java -jar /picard.jar FilterSamReads I=${bam} O=${idSample}_filtered.bam TAG=BX TAG_VALUE=${idSample} FILTER=includeTagValues
-//samtools sort -n ${idSample}_filtered.bam > ${idSample}_filtered_sorted.bam
 
