@@ -1,3 +1,7 @@
+/*
+ * #### Create reference index
+ */
+
 process index {
     echo true
     label 'index'

@@ -1,3 +1,7 @@
+/*
+ * ####  create dictionary
+ */
+
 process gatk_dict {
     echo true
     label 'gatk_dict'

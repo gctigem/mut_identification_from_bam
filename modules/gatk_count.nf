@@ -1,4 +1,7 @@
-//Find variants wiht Analyze saturation mutagenesis
+/*
+ * ####  Find variants wiht Analyze saturation mutagenesis
+ */
+
 process gatk_count {
     echo true
     label 'gatk_count'

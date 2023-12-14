@@ -1,4 +1,8 @@
 
+/*
+ * ####  extract read for each barcode
+ */
+
 process fastq_subset {
     echo true
     label 'fastq_subset'

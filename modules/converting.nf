@@ -1,5 +1,7 @@
+/*
+ * ####  converts bam to fastq using samtools
+ */
 
-//this process converts bam to fastq using samtools
 process converting {
     echo true
     label 'converting'
