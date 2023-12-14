@@ -24,6 +24,7 @@ bc = Channel.fromPath(input_ch)
 
 
 bam=Channel.from(params.bam)
+
 //fastq_1 = Channel.from(params.fastq_1)
 //fastq_2 = Channel.from(params.fastq_2)
 
