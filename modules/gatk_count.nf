@@ -21,12 +21,8 @@ process gatk_count {
     path(fasta_index)
     tuple val(idSample), path(bam)
     
-
-    output:
-    path("*{Counts,Fractions,Coverage}"), emit: gatk_res 
-
     //output:
-    // tuple val(idSample),path("*.{variantCounts,Counts,Fractions,Coverage}"), emit: mutagenesis
+    //tuple val(idSample),path("*.{variantCounts,Counts,Fractions,Coverage}"), emit: mutagenesis
     
     script:
     """
@@ -36,7 +32,7 @@ process gatk_count {
     fi
     gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O $params.outdir/gatk/${idSample}
     find $params.outdir/gatk -name '*.variantCounts' -empty -delete 
-   
+    rm *.{Counts,Fractions,Coverage}
 
     """
 }
