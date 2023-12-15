@@ -32,7 +32,7 @@ process gatk_count {
     """
 
 
-        gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/index/genome.fa --orf $params.orf -O ./${idSample}
+        gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O ./${idSample}
 
    
 
