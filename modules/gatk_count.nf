@@ -32,7 +32,6 @@ process gatk_count {
     fi
     gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O $params.outdir/gatk/${idSample}
     find $params.outdir/gatk -name '*.variantCounts' -empty -delete 
-    rm *.{Counts,Fractions,Coverage}
 
     """
 }
