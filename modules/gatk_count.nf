@@ -30,7 +30,7 @@ process gatk_count {
     
     script:
     """
-    gatk AnalyzeSaturationMutagenesis -I ${bam} -R $params.outdir/index/genome.fa --orf $params.orf -O ./${idSample}
+    gatk AnalyzeSaturationMutagenesis -I ${bam} -R $params.outdir/ref/genome.fa --orf $params.orf -O ./${idSample}
     find $params.outdir/gatk -name '*.variantCounts' -empty -delete 
    
 
