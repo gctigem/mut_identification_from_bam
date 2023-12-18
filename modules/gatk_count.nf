@@ -30,6 +30,12 @@ process gatk_count {
     gatk AnalyzeSaturationMutagenesis -I $bam -R $params.outdir/ref/genome.fa --orf $params.orf -O ./${idSample}
     
     """
+
+    stub:
+    """
+    touch ${idSample}.variantCounts
+
+    """
 }
 
 /* if [[ ! -d $params.outdir/gatk ]]; then
