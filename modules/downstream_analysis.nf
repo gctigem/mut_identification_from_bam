@@ -6,7 +6,7 @@ process downstream_analysis {
 
         
  input:
- path(gatk_res)
+ path(mutagenesis)
 
  script:
  
