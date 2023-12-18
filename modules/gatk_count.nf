@@ -10,9 +10,9 @@ process gatk_count {
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
 	     if (filename.indexOf(".variantCounts") > 0) 	"gatk/counts/$filename"
-    else if (filename.indexOf("Counts") > 0) 	"gatk/stats/$filename"
-    else if (filename.indexOf("Fractions") > 0) 	"gatk/stats/$filename"
-    else if (filename.indexOf("Coverage") > 0) 	"gatk/stats/$filename"
+    //else if (filename.indexOf("Counts") > 0) 	"gatk/stats/$filename"
+    //else if (filename.indexOf("Fractions") > 0) 	"gatk/stats/$filename"
+    //else if (filename.indexOf("Coverage") > 0) 	"gatk/stats/$filename"
 	else null
     }
   
