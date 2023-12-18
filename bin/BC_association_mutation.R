@@ -1,3 +1,7 @@
+myarg <- commandArgs(TRUE)
+myarg <- unlist(strsplit(myarg, " {1,}"))
+myargv <- myarg[seq(2, length(myarg), by=2)]; names(myargv) <- gsub("-", "", myarg[seq(1, length(myarg), by=2)])
+
 design=myargv["design"] #category of sample analyzed
 orf=myargv["orf"] # orf used
 orf=as.numeric(sapply(strsplit(orf,"-"), "[[", 2)) #take last nuc of the orf
