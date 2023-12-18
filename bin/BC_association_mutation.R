@@ -37,8 +37,8 @@ read.mutations=function(file_counts){
   }
 }
 
-files=list.files("../gatk/counts",pattern="variantCounts",recursive = T)
-files=paste0("../gatk/counts",files)
+files=list.files("../gatk",pattern="variantCounts",recursive = T)
+files=paste0("../gatk",files)
 
 mut=list()
 for(i in files){
