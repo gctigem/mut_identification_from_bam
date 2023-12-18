@@ -26,7 +26,7 @@ process gatk_count {
     script:
     """
  
-    gatk AnalyzeSaturationMutagenesis -I $bam -R $params.outdir/ref/genome.fa --orf $params.orf -O ./${idSample}
+    gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O ./${idSample}
     
     """
 
