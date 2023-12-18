@@ -18,7 +18,6 @@ process gatk_count {
   
     
     input:
-    path(fasta_index)
     tuple val(idSample), path(bam)
     
     output:
@@ -31,11 +30,6 @@ process gatk_count {
     
     """
 
-    stub:
-    """
-    touch ${idSample}.variantCounts
-
-    """
 }
 
 /* if [[ ! -d $params.outdir/gatk ]]; then
@@ -46,4 +40,9 @@ process gatk_count {
 
     gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O ./${idSample}
 
+    stub:
+    """
+    touch ${idSample}.variantCounts
+
+    """
 */
