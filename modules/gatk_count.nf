@@ -26,11 +26,8 @@ process gatk_count {
     
     script:
     """
-    if [[ ! -d $params.outdir/gatk ]]; then
-        mkdir $params.outdir/gatk
-    fi
-    gatk AnalyzeSaturationMutagenesis -I $params.outdir/bwa/${idSample}_out.bam -R $params.outdir/ref/genome.fa --orf $params.orf -O $params.outdir/gatk/${idSample}
-    find $params.outdir/gatk -name '*.variantCounts' -empty -delete 
+ 
+    gatk AnalyzeSaturationMutagenesis -I $bam -R $params.outdir/ref/genome.fa --orf $params.orf -O ./${idSample}
     
     """
 }
