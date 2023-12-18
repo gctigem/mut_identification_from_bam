@@ -13,8 +13,6 @@ process downstream_analysis {
 """
 [ ! -d $params.outdir/downstream ] && mkdir $params.outdir/downstream
 cd $params.outdir/downstream
-[ ! -d $params.outdir/downstream/results ] && mkdir $params.outdir/downstream/results
-[ ! -d $params.outdir/downstream/figures ] && mkdir $params.outdir/downstream/figures
 
 Rscript  $baseDir/bin/downstream_mite.R -design $params.design -orf $params.orf -codon $params.codon_usage
 """
