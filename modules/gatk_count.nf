@@ -21,8 +21,8 @@ process gatk_count {
     path(fasta_index)
     tuple val(idSample), path(bam)
     
-    //output:
-    //path("*.{Counts}"), emit: mutagenesis
+    output:
+    path("*.{Counts}"), emit: mutagenesis
     
     script:
     """
