@@ -14,7 +14,7 @@ process downstream_analysis {
 [ ! -d $params.outdir/downstream ] && mkdir $params.outdir/downstream
 cd $params.outdir/downstream
 
-Rscript  $baseDir/bin/downstream_mite.R -design $params.design -orf $params.orf -codon $params.codon_usage
+Rscript  $baseDir/bin/BC_association_mutation.R -design $params.design -orf $params.orf -codon $params.codon_usage
 """
  
 }
