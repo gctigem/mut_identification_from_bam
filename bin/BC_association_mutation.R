@@ -55,7 +55,7 @@ for(i in files){
 keep=sapply(mut, function(x) nrow(x)!=0)
 mut=mut[keep]
 
-names(mut)=sapply(strsplit(names(mut),"/"),"[[",2)
+names(mut)=sapply(strsplit(names(mut),"/"),"[[",4)
 names(mut)=sapply(strsplit(names(mut), "[.]"),"[[",1)
 
 design=read.table(design,sep="\t")
@@ -82,7 +82,7 @@ count_mut=list()
 
 for(i in 1:length(mut)){
   sample=names(mut)[i]
-  range=design[design$sample==sample,c(2,3)]
+  range=design[2,c(2,3)]
   range_seq=unlist(lapply(1:nrow(range),function(x) seq(range[x,1],range[x,2],1)))
   
   count_mut[[i]]=mut[[i]][mut[[i]][,1]%in%range_seq,c(4,3)]
