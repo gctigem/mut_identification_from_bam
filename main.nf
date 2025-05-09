@@ -44,7 +44,7 @@ workflow {
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
      alignment(index.out.fasta_index.collect(),fastq_subset.out.sub_fastq)
-     gatk_count(alignment.out.bam)
-     downstream_analysis(gatk_count.out.mutagenesis.collect())
+     //gatk_count(alignment.out.bam)
+     //downstream_analysis(gatk_count.out.mutagenesis.collect())
      
 }
