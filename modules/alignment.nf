@@ -6,7 +6,8 @@ process alignment {
     echo true
     label 'alignment'
     tag 'bwa'
-    container 'staphb/bwa:0.7.17'
+    container 'rosadesa/ampliseq:0.3'
+    //container 'staphb/bwa:0.7.17'
     //container 'docker://rosadesa/ampliseq:0.2'
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
