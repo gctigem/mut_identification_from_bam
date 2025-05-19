@@ -6,6 +6,7 @@ process index {
     echo true
     label 'index'
     tag 'index'
+    container 'staphb/bwa:0.7.17'
     //container 'docker://rosadesa/ampliseq:0.3'
    
     input:

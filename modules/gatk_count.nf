@@ -6,7 +6,9 @@ process gatk_count {
     echo true
     label 'gatk_count'
     tag 'gatk_count'
-    container 'docker://quay.io/biocontainers/gatk4:4.3.0.0--py36hdfd78af_0'
+    //container 'docker://quay.io/biocontainers/gatk4:4.3.0.0--py36hdfd78af_0'
+    container 'quay.io/biocontainers/gatk4:4.3.0.0--py36hdfd78af_0'
+
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
 	     if (filename.indexOf(".variantCounts") > 0) 	"gatk/counts/$filename"
