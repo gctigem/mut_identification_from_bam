@@ -2,7 +2,9 @@ process downstream_analysis {
      echo true
      label 'downstream_analysis'
      tag 'downstream_analysis'
-     container 'docker://rosadesa/rbase:4.2'
+     //container 'docker://rosadesa/rbase:4.2'
+
+     container 'rosadesa/rbase:4.2'
 
         
  input:
