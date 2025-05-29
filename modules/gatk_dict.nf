@@ -12,11 +12,18 @@ process gatk_dict {
     path(fasta)
     path(fasta_index)
 
+    output:
+    path 'genome.dict', emit: dict
+    path 'done.txt'
+
 
     script:
     """
-    [ ! -f $params.outdir/ref/genome.dict ] && gatk CreateSequenceDictionary -R $params.outdir/ref/genome.fa
+    gatk CreateSequenceDictionary -R /opt/ref/genome.fa
     echo gatk_dict > done.txt
 
     """
 }
+
+
+//    [ ! -f $params.outdir/ref/genome.dict ] && gatk CreateSequenceDictionary -R $params.outdir/ref/genome.fa
