@@ -24,10 +24,10 @@ bc = Channel.fromPath(input_ch)
                    
 
 
-bam=Channel.from(params.bam)
+//bam=Channel.from(params.bam)
 
-//fastq_1 = Channel.from(params.fastq_1)
-//fastq_2 = Channel.from(params.fastq_2)
+fastq_1 = Channel.from(params.fastq_1)
+fastq_2 = Channel.from(params.fastq_2)
 
 fasta = Channel.from(params.fasta)
 
@@ -38,9 +38,9 @@ fasta = Channel.from(params.fasta)
  */
 
 workflow {
-     converting(bam)
+     //converting(bam)
      //fastq_subset(converting.out.fastq.collect())
-     fastq_subset(bc,converting.out.fastq.collect())
+     fastq_subset(bc,fastq_1,fastq_2)
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
      alignment(index.out.fasta_index.collect(),fastq_subset.out.sub_fastq)
