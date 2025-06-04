@@ -29,10 +29,7 @@ bc = Channel.fromPath(input_ch)
 fastq_1 = Channel.from(params.fastq_1)
 fastq_2 = Channel.from(params.fastq_2)
 
-reads = barcodes
-    .combine(fastq_1)
-    .combine(fastq_2)
-    .map { ((bc, r1), r2) -> tuple(bc, r1, r2) }
+reads = fastq_1.combine(fastq_2)
 
 fasta = Channel.from(params.fasta)
 
@@ -45,7 +42,7 @@ fasta = Channel.from(params.fasta)
 workflow {
      //converting(bam)
      //fastq_subset(converting.out.fastq.collect())
-     fastq_subset(reads)
+     fastq_subset(bc,reads)
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
      alignment(index.out.fasta_index.collect(),fastq_subset.out.sub_fastq)
