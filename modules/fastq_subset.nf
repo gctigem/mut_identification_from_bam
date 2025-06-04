@@ -16,9 +16,7 @@ process fastq_subset {
     }
 
     input:
-     tuple val(idSample)
-     path(fastq_1)
-     path(fastq_2)
+     tuple val(idSample),path(fastq_1),path(fastq_2)
 
 
     output:
