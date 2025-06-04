@@ -33,7 +33,7 @@ fastq_2 = Channel.from(params.fastq_2)
 reads = fastq_1.combine(fastq_2)
     .map { r1, r2 -> tuple(r1, r2) }
 
-reads.view()
+//reads.view()
 
 fasta = Channel.from(params.fasta)
 
