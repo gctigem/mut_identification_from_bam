@@ -29,7 +29,7 @@ bc = Channel.fromPath(input_ch)
 fastq_1 = Channel.from(params.fastq_1)
 fastq_2 = Channel.from(params.fastq_2)
 
-reads = fastq_1.combine(fastq_2)
+reads = fastq_1.combine(fastq_2).view
 
 fasta = Channel.from(params.fasta)
 
