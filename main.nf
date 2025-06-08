@@ -31,12 +31,12 @@ fastq_1 = Channel.from(params.fastq_1)
 fastq_2 = Channel.from(params.fastq_2)
 
 //reads = fastq_1.combine(fastq_2)
-gz_reads = fastq_1.combine(fastq_2)
-    .map { r1, r2 -> tuple(r1, r2) } 
+//gz_reads = fastq_1.combine(fastq_2)
+ //   .map { r1, r2 -> tuple(r1, r2) } 
 
    
 
-gz_reads.view()
+//gz_reads.view()
 
 fasta = Channel.from(params.fasta)
 
@@ -49,7 +49,7 @@ fasta = Channel.from(params.fasta)
 workflow {
      //converting(bam)
      //fastq_subset(converting.out.fastq.collect())
-     decompress_reads(gz_reads)
+     decompress_reads(fastq_1,fastq_2)
      fastq_subset(bc,decompress_reads.out.reads.collect())
      //fastq_subset(bc,reads.collect())
      index(fasta)
