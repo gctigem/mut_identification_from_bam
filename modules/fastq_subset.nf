@@ -25,27 +25,33 @@ process fastq_subset {
 
     script:
     """
-     # VERSIONE ULTRA-OTTIMIZZATA: seqkit con elaborazione parallela
-    # seqkit è molto più veloce di grep per operazioni su FASTQ
+       echo "Processing sample: ${idSample}"
     
-    echo "Processing sample: ${idSample} with seqkit"
-    echo "Input files: ${reads[0]}, ${reads[1]}"
+    # SOLUZIONE SEMPLICE: Prima decomprimiamo, poi usiamo seqkit, poi ricomprimiamo
     
-    # Elaborazione parallela con seqkit (molto più veloce)
-    seqkit grep -r -p "BX:Z:${idSample}" ${reads[0]} | gzip > ${idSample}_filtered_1.fastq.gz &
-    seqkit grep -r -p "BX:Z:${idSample}" ${reads[1]} | gzip > ${idSample}_filtered_2.fastq.gz &
+    # Decomprimi i file
+    echo "Decompressing input files..."
+    gunzip -c ${reads[0]} > read1.fastq
+    gunzip -c ${reads[1]} > read2.fastq
     
-    # Aspetta che entrambi i processi finiscano
-    wait
+    # Verifica che i file siano stati decompressi
+    echo "Input file sizes:"
+    ls -lh read1.fastq read2.fastq
     
-    # Verifica che i file siano stati creati
-    if [ ! -f "${idSample}_filtered_1.fastq.gz" ] || [ ! -f "${idSample}_filtered_2.fastq.gz" ]; then
-        echo "ERROR: Failed to create filtered FASTQ files for sample ${idSample}"
-        exit 1
-    fi
+    # Usa seqkit sui file decompressi con sintassi semplice
+    echo "Searching for pattern BX:Z:${idSample}..."
     
-    echo "Successfully filtered FASTQ files for sample: ${idSample}"
-    echo "Output files: ${idSample}_filtered_1.fastq.gz, ${idSample}_filtered_2.fastq.gz"
+    # Prova prima con -s (sequence) flag
+    seqkit grep -s -p "BX:Z:${idSample}" read1.fastq > ${idSample}_filtered_1.fastq
+    seqkit grep -s -p "BX:Z:${idSample}" read2.fastq > ${idSample}_filtered_2.fastq
+    
+    # Verifica se i file sono vuoti
+    size1=\$(wc -l < ${idSample}_filtered_1.fastq)
+    size2=\$(wc -l < ${idSample}_filtered_2.fastq)
+    
+    echo "First attempt results:"
+    echo "  Read 1: \$size1 lines"
+    echo "  Read 2: \$size2 lines"
     
     """
 }
