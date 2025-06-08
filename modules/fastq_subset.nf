@@ -26,10 +26,10 @@ process fastq_subset {
     script:
     """
       seqkit grep -j ${task.cpus} -r "BX:Z:${idSample}" ${reads}[0] \
-    | gzip ${idSample}_filtered_1.fastq
+    | gzip -c > ${idSample}_filtered_1.fastq
 
     seqkit grep -j ${task.cpus} -r "BX:Z:${idSample}" ${reads}[1] \
-    |  gzip ${idSample}_filtered_2.fastq
+    |  gzip -c > ${idSample}_filtered_2.fastq
     
     """
 }
