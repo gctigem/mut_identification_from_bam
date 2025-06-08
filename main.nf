@@ -2,6 +2,7 @@ nextflow.enable.dsl=2
 
 //modules
 include { converting } from './modules/converting'
+include { decompress_reads } from './modules/decompress_reads'
 include { fastq_subset } from './modules/fastq_subset'
 include { index } from './modules/index'
 include { gatk_dict } from './modules/gatk_dict'
