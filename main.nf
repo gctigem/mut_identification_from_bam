@@ -36,8 +36,9 @@ reads = fastq_1.combine(fastq_2)
 
  Channel
   .fromFilePairs( "${params.reads_r1},${params.reads_r2}", flat: true )
+   .view() 
   .set { gz_reads }
-  .view()   
+   
 
 //reads.view()
 
