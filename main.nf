@@ -46,6 +46,7 @@ fasta = Channel.from(params.fasta)
 workflow {
      //converting(bam)
      //fastq_subset(converting.out.fastq.collect())
+     decompress_reads(bc,reads)
      fastq_subset(bc,reads.collect())
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
