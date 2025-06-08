@@ -25,21 +25,13 @@ process fastq_subset {
 
     script:
     """
-    zcat ${reads[0]} | awk -v pattern="BX:Z:${idSample}" '
-    \$0 ~ pattern {
-        print \$0; 
-        getline; print \$0; 
-        getline; print \$0; 
-        getline; print \$0
-    }' | gzip > ${idSample}_filtered_1.fastq.gz &
+    grep -A 3 BX:Z:${idSample} ${reads}[0] > ${idSample}_filtered_1.fastq
+        gzip ${idSample}_filtered_1.fastq
 
-zcat ${reads[1]} | awk -v pattern="BX:Z:${idSample}" '
-    \$0 ~ pattern {
-        print \$0; 
-        getline; print \$0; 
-        getline; print \$0; 
-        getline; print \$0
-    }' | gzip > ${idSample}_filtered_2.fastq.gz &
+    grep -A 3 BX:Z:${idSample} ${reads}[1] > ${idSample}_filtered_2.fastq
+        gzip ${idSample}_filtered_2.fastq
+
+
     
     """
 }

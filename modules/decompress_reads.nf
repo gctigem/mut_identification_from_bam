@@ -12,7 +12,7 @@ process decompress_reads {
   path(reads)
 
   output:
-  tuple val(idSample), path("${idSample}_filtered_*.fastq"), emit: reads_unz
+  tuple val(idSample), path("${idSample}_filtered_*.fastq"), emit: reads
 
   script:
   """
