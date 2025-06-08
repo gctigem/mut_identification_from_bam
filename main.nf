@@ -27,12 +27,16 @@ bc = Channel.fromPath(input_ch)
 
 //bam=Channel.from(params.bam)
 
-fastq_1 = Channel.from(params.fastq_1)
+/*fastq_1 = Channel.from(params.fastq_1)
 fastq_2 = Channel.from(params.fastq_2)
 
 //reads = fastq_1.combine(fastq_2)
 reads = fastq_1.combine(fastq_2)
-    .map { r1, r2 -> tuple(r1, r2) }
+    .map { r1, r2 -> tuple(r1, r2) } */
+
+ Channel
+  .fromFilePairs( "${params.reads_r1},${params.reads_r2}", flat: true )
+  .set { gz_reads }   
 
 //reads.view()
 
