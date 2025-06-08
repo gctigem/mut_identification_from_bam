@@ -8,15 +8,14 @@ process decompress_reads {
     }
 
   input:
-  tuple val(idSample)
   path(reads1_gz), path(reads2_gz)
 
   output:
-  tuple val(idSample), path("${idSample}_filtered_*.fastq"), emit: reads
+  path("reads_filtered_*.fastq"), emit: reads
 
   script:
   """
-  zcat "$reads1_gz" > ${idSample}_filtered_1.fastq
-  zcat "$reads2_gz" > ${idSample}_filtered_2.fastq
+  zcat "$reads1_gz" > reads_filtered_1.fastq
+  zcat "$reads2_gz" > reads_filtered_2.fastq
   """
 }
