@@ -40,7 +40,7 @@ fasta = Channel.from(params.fasta)
 
 workflow {
      converting(bam)
-     //decompress_reads(converting.out.bam)
+     decompress_reads(converting.out.bam)
      //fastq_subset(converting.out.fastq.collect())
      //fastq_subset(bc,converting.out.fastq.collect())
      fastq_subset(bc,decompress_reads.out.reads.collect())
