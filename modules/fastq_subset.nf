@@ -8,7 +8,7 @@ process fastq_subset {
     label 'fastq_subset'
     tag 'fastq_subset'
      errorStrategy 'ignore'
-     container 'staphb/seqkit:2.7.0'
+     //container 'staphb/seqkit:2.7.0'
     //container 'docker://rosadesa/ampliseq:0.3'
     publishDir "$params.outdir", mode: 'copy',
     saveAs: {filename ->
@@ -26,12 +26,11 @@ process fastq_subset {
 
     script:
     """
-    seqkit grep -j ${task.cpus} -r "BX:Z:${idSample}" ${fastq}[0] \
-    | gzip -c > ${idSample}_filtered_1.fastq.gz
+    zcat ${fastq[0]} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
+    gzip ${idSample}_filtered_1.fastq
 
-    seqkit grep -j ${task.cpus} -r "BX:Z:${idSample}" ${fastq}[1] \
-    |  gzip -c > ${idSample}_filtered_2.fastq.gz
-    
+    zcat ${fastq[1]} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_2.fastq
+    gzip ${idSample}_filtered_2.fastq
     """
 }
 
