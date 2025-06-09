@@ -28,11 +28,21 @@ process fastq_subset {
 
     script:
     """
-    grep -A 3 BX:Z:${idSample} ${fastq_1} > ${idSample}_filtered_1.fastq
-    gzip ${idSample}_filtered_1.fastq
-
-    grep -A 3 BX:Z:${idSample} ${fastq_2} > ${idSample}_filtered_2.fastq
-    gzip ${idSample}_filtered_2.fastq
+    zcat ${fastq_1} | awk -v pattern="BX:Z:${idSample}" '
+        \$0 ~ pattern {
+            print \$0; 
+            getline; print \$0; 
+            getline; print \$0; 
+            getline; print \$0
+        }' | gzip > ${idSample}_filtered_1.fastq.gz &
+    
+    zcat ${fastq_2} | awk -v pattern="BX:Z:${idSample}" '
+        \$0 ~ pattern {
+            print \$0; 
+            getline; print \$0; 
+            getline; print \$0; 
+            getline; print \$0
+        }' | gzip > ${idSample}_filtered_2.fastq.gz &
     """
 }
 
