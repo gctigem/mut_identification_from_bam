@@ -2,7 +2,7 @@ nextflow.enable.dsl=2
 
 //modules
 include { converting } from './modules/converting'
-include { decompress_reads } from './modules/decompress_reads'
+//include { decompress_reads } from './modules/decompress_reads'
 include { fastq_subset } from './modules/fastq_subset'
 include { index } from './modules/index'
 include { gatk_dict } from './modules/gatk_dict'
@@ -49,8 +49,8 @@ fasta = Channel.from(params.fasta)
 workflow {
      //converting(bam)
      //fastq_subset(converting.out.fastq.collect())
-     decompress_reads(fastq_1,fastq_2)
-     fastq_subset(bc,decompress_reads.out.reads)
+     //decompress_reads(fastq_1,fastq_2)
+     fastq_subset(bc,.fastq_1,fastq_2)
      //fastq_subset(bc,reads.collect())
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)

@@ -17,7 +17,8 @@ process fastq_subset {
 
     input:
      tuple val(idSample)
-     path(reads)
+     path(fastq_1)
+     path(fastq_2)
   
 
     output:
@@ -25,13 +26,21 @@ process fastq_subset {
 
     script:
     """
-    grep -A 3 BX:Z:${idSample} ${reads}[0] > ${idSample}_filtered_1.fastq
-        gzip ${idSample}_filtered_1.fastq
-
-    grep -A 3 BX:Z:${idSample} ${reads}[1] > ${idSample}_filtered_2.fastq
-        gzip ${idSample}_filtered_2.fastq
-
-
+    zcat ${fastq_1} | awk -v pattern="BX:Z:${idSample}" '
+        \$0 ~ pattern {
+            print \$0; 
+            getline; print \$0; 
+            getline; print \$0; 
+            getline; print \$0
+        }' | gzip > ${idSample}_filtered_1.fastq.gz &
+    
+    zcat ${fastq_2} | awk -v pattern="BX:Z:${idSample}" '
+        \$0 ~ pattern {
+            print \$0; 
+            getline; print \$0; 
+            getline; print \$0; 
+            getline; print \$0
+        }' | gzip > ${idSample}_filtered_2.fastq.gz &
     
     """
 }
@@ -42,4 +51,12 @@ process fastq_subset {
         gzip ${idSample}_filtered_1.fastq
 
         zcat ${reads}[1] | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_2.fastq
-        gzip ${idSample}_filtered_2.fastq*/
+        gzip ${idSample}_filtered_2.fastq
+        
+        
+        
+            zcat ${fastq_1} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_1.fastq
+    gzip ${idSample}_filtered_1.fastq
+
+    zcat ${fastq_2} | grep -A 3 BX:Z:${idSample} > ${idSample}_filtered_2.fastq
+    gzip ${idSample}_filtered_2.fastq*/
