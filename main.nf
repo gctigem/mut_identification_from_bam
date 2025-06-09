@@ -25,10 +25,10 @@ bc = Channel.fromPath(input_ch)
                    
 
 
-bam=Channel.from(params.bam)
+//bam=Channel.from(params.bam)
 
-//fastq_1 = Channel.from(params.fastq_1)
-//fastq_2 = Channel.from(params.fastq_2)
+fastq_1 = Channel.from(params.fastq_1)
+fastq_2 = Channel.from(params.fastq_2)
 
 fasta = Channel.from(params.fasta)
 
@@ -39,8 +39,8 @@ fasta = Channel.from(params.fasta)
  */
 
 workflow {
-     converting(bam)
-     decompress_reads(converting.out.fastq)
+     //converting(bam)
+     decompress_reads(fastq_1,fastq_2)
      //fastq_subset(converting.out.fastq.collect())
      //fastq_subset(bc,converting.out.fastq.collect())
      fastq_subset(bc,decompress_reads.out.reads.collect())

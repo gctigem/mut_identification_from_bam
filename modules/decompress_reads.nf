@@ -8,7 +8,8 @@ process decompress_reads {
     }
 
   input:
-  path(fastq)
+  path(fastq_1)
+  path(fastq_2)
 
 
   output:
@@ -16,7 +17,7 @@ process decompress_reads {
 
   script:
   """
-  zcat "${fastq[0]}" > reads_filtered_1.fastq
-  zcat "${fastq[1]}" > reads_filtered_2.fastq
+  zcat "$fastq_1" > reads_filtered_1.fastq
+  zcat "$fastq_2}" > reads_filtered_2.fastq
   """
 }
