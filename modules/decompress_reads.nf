@@ -18,6 +18,6 @@ process decompress_reads {
   script:
   """
   zcat "$fastq_1" > reads_filtered_1.fastq
-  zcat "$fastq_2}" > reads_filtered_2.fastq
+  zcat "$fastq_2" > reads_filtered_2.fastq
   """
 }
