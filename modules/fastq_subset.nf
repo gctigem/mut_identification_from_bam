@@ -18,8 +18,8 @@ process fastq_subset {
 
     input:
      tuple val(idSample)
-     //path(fastq)
-     path(reads)
+     path(fastq_1)
+     path(fastq_2)
 
 
 
@@ -28,10 +28,10 @@ process fastq_subset {
 
     script:
     """
-    grep -A 3 BX:Z:${idSample} ${reads}[0] > ${idSample}_filtered_1.fastq
+    grep -A 3 BX:Z:${idSample} ${fastq_1} > ${idSample}_filtered_1.fastq
     gzip ${idSample}_filtered_1.fastq
 
-    grep -A 3 BX:Z:${idSample} ${reads}[1] > ${idSample}_filtered_2.fastq
+    grep -A 3 BX:Z:${idSample} ${fastq_2} > ${idSample}_filtered_2.fastq
     gzip ${idSample}_filtered_2.fastq
     """
 }
