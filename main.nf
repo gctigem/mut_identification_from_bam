@@ -50,7 +50,7 @@ workflow {
      //converting(bam)
      //fastq_subset(converting.out.fastq.collect())
      decompress_reads(fastq_1,fastq_2)
-     fastq_subset(bc,decompress_reads.out.reads.collect())
+     fastq_subset(bc,decompress_reads.out.reads)
      //fastq_subset(bc,reads.collect())
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
