@@ -43,7 +43,7 @@ workflow {
      decompress_reads(fastq_1,fastq_2)
      //fastq_subset(converting.out.fastq.collect())
      //fastq_subset(bc,converting.out.fastq.collect())
-     fastq_subset(bc,decompress_reads.out.reads.collect())
+     fastq_subset(bc,decompress_reads.out.reads)
      index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
      alignment(index.out.fasta_index.collect(),fastq_subset.out.sub_fastq)
