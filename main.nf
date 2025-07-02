@@ -9,7 +9,14 @@ include { gatk_count } from './modules/gatk_count'
 include { alignment } from './modules/alignment'
 include { downstream_analysis } from './modules/downstream_analysis'
 
-
+log.info """
+         SCRAM_seq Pipeline (version 1)
+         ===================================
+         Nextflow DSL2
+         Authors: Rosa De Santis 
+         """
+         .stripIndent()
+         
 // def variables
 
 if (params.input) { input_ch = file(params.input, checkIfExists: true) } else { exit 1, 'Input samplesheet not specified!' }
