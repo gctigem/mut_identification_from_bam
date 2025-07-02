@@ -1,5 +1,4 @@
 # mut_identification_from_bam
-# SCRAM\_seq Pipeline
 
 **Version**: 3.0
 **Author**: Rosa De Santis
