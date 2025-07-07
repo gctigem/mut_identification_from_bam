@@ -1,2 +1,2 @@
-TP63	1	598	NONE
-SAM	470	525	SAM
+TP63    1       598     NONE
+SAM     470     525     SAM
