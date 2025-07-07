@@ -51,8 +51,8 @@ bam: /path/to/out.bam
 ```
 <li>input: This is the path to the .txt file containing the list of barcodes analyzed </li>
 <li>fasta: This is the path to the directory containing the reference of the mutagenized gene in fasta format.</li>
-<li>codon_usage: This is the path to the .txt file containing information about the codon usage and the codon used to perform the mutagenesis. </li>
-<li>design: This is the path to the .txt file containing information about the positions of the library used to mutagenize the WT sequence of interest. </li>
+<li>codon_usage: This is the path to the .txt file containing information about the codon usage and the codon used to perform the mutagenesis. (example in files) </li>
+<li>design: This is the path to the .txt file containing information about the positions of the library used to mutagenize the WT sequence of interest. (example in files) </li>
 <li>orf: This is the nucleotide range (within the fasta used as input) where the protein starts. Usually, since the input fasta is the entire mutagenized sequence, it goes from 1 to the end of the sequence. This features ensures that the mutagenized codons will get the correct position within the gene.</li>
 <li>outdir: This is the path to the directory where the results have to be stored.</li>
 <li>fastq_1 fastq_2: This is the path to the directory where the fastq files have to be stored.</li>
