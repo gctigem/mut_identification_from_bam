@@ -49,7 +49,7 @@ fastq_2: /path/to/sample_R2.fastq.gz
 (Specify the following path only if the pipeline starts with a BAM file, branches: main, virtual)
 bam: /path/to/out.bam
 ```
-<li>input: This is the path to the .txt file containing the list of barcodes analyzed </li>
+<li>input: This is the path to the .txt file containing the list of barcodes analyzed for each lane </li>
 <li>fasta: This is the path to the directory containing the reference of the mutagenized gene in fasta format.</li>
 <li>codon_usage: This is the path to the .txt file containing information about the codon usage and the codon used to perform the mutagenesis. (example in files) </li>
 <li>design: This is the path to the .txt file containing information about the positions of the library used to mutagenize the WT sequence of interest. (example in files) </li>
