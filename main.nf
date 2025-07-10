@@ -52,9 +52,9 @@ workflow {
      //decompress_reads(fastq_1,fastq_2)
      fastq_subset(bc,fastq_1.collect(),fastq_2.collect())
      //fastq_subset(bc,reads.collect())
-     /*index(fasta)
+     index(fasta)
      gatk_dict(index.out.fasta_index,fasta)
      alignment(index.out.fasta_index.collect(),fastq_subset.out.sub_fastq)
      gatk_count(alignment.out.bam)
-     downstream_analysis(gatk_count.out.mutagenesis.collect())   */ 
+     downstream_analysis(gatk_count.out.mutagenesis.collect())   
 }
